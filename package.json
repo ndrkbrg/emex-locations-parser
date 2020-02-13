@@ -1,0 +1,19 @@
+{
+  "name": "emex-locations-worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "dependencies": {
+    "@types/node": "^13.7.0",
+    "@types/puppeteer": "^2.0.0",
+    "pg": "^7.18.1",
+    "puppeteer": "^2.1.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.22"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "author": "ndrkbrg"
+}
