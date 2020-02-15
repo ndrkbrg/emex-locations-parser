@@ -21,7 +21,6 @@ export class Db {
     }
 
     public static insertAndGetOffice = async (connection: Connection, location: any, city: City, shop: Shop) => {
-        console.log(city.name_in_russian + ': ' + location.locationId);
         let officeRecord = await connection.manager.findOne(Office, { external_id: location.locationId });
         if(!officeRecord) // Create if not exist
         {

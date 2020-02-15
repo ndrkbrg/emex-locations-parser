@@ -54,7 +54,8 @@ export class Parser {
         return regions;
     }
 
-    public static parseStart = async(browser:any) => {
+    public static parseStart = async(puppeteer:any) => {
+        const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.setViewport({width: 1920, height: 1080});
         await page.goto('https://emex.ru/');
@@ -64,4 +65,16 @@ export class Parser {
         await page.waitForSelector('.country-list-item');
         return page;
     }
+
+    public static closeBrowser = async (page:any) => {
+        const browser = page.browser();
+        await browser.close();
+    }
+
+    public static restartBrowser = async(puppeteer:any, page:any) => {
+        Parser.closeBrowser(page);
+        return Parser.parseStart(puppeteer);
+    }
+
+
 }
