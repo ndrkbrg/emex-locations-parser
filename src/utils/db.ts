@@ -8,7 +8,7 @@ import { Phone } from "../entity/Phone";
 export class Db {
 
     public static insertAndGetPhone = async (connection: Connection, phoneNumber: string, office: Office) => {
-        let phoneRecord = await connection.manager.findOne(Phone, { phone: phoneNumber });
+        let phoneRecord = await connection.manager.findOne(Phone, { phone: phoneNumber, office: office});
         if(!phoneRecord) // Create if not exist
         {
             let newPhone = new Phone();
@@ -21,6 +21,7 @@ export class Db {
     }
 
     public static insertAndGetOffice = async (connection: Connection, location: any, city: City, shop: Shop) => {
+        console.log(city.name_in_russian + ': ' + location.locationId);
         let officeRecord = await connection.manager.findOne(Office, { external_id: location.locationId });
         if(!officeRecord) // Create if not exist
         {
@@ -56,7 +57,7 @@ export class Db {
         {
             let newCountry = new Country();
             newCountry.name_in_russian = country;
-            await connection.manager.save(countryRecord);
+            await connection.manager.save(newCountry);
             countryRecord = newCountry;
         }
         return countryRecord;
